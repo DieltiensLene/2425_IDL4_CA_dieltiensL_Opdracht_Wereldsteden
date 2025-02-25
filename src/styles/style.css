@@ -1,0 +1,61 @@
+:root {
+  --swiper-navigation-color: white;
+  --swiper-pagination-color: white;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  position: relative;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.city-name {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  color: white;
+  font-size: 100px;
+  font-weight: bold;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.temperature {
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+/* Styling voor het icoontje */
+.weather-icon {
+  position: absolute;
+  justify-content: center;
+  top: 123px;
+  left: 30px;
+  width: 70px;  /* Pas de breedte van het icoon aan */
+  height: 70px; /* Pas de hoogte van het icoon aan */
+}
+
+/* Styling voor het iconen-afbeelding */
+.weather-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* Zorgt ervoor dat het icoon goed schaalt */
+  /* do grayscale */
+}
+
