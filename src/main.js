@@ -30,9 +30,14 @@ async function fetchWeather(city, element, iconElement) {
     const data = await response.json();
     const temp = data.main.temp;
     const iconCode = data.weather[0].icon;  // Haal de icon code op (bijv. '01d' voor zonnig)
+
+    // rond de temperatuur af naar een rond getal
+    const roundedTemp = Math.round(temp);
+
+    // Zet de afgeronde temperatuur in de HTML
+    element.innerHTML = `${roundedTemp}°C`;
     
-    // Zet de temperatuur in de HTML
-    element.innerHTML = `${temp}°C`;
+    
 
     // Stel de URL van het icoon in en voeg het toe aan de pagina
     const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
@@ -60,7 +65,7 @@ document.querySelectorAll('.swiper-slide').forEach((slide) => {
 });
 
 // Initieer Swiper
-const swiper = new Swiper('.swiper', {
+new Swiper('.swiper', {
   modules: [Navigation, Pagination],
   direction: 'horizontal',
   loop: true,
@@ -70,5 +75,5 @@ const swiper = new Swiper('.swiper', {
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
-  }
+  },
 });
