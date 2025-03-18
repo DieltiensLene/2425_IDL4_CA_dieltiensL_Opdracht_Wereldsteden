@@ -14,11 +14,11 @@ import { apiKey } from './secret.js';
 
 // Steden en hun corresponderende OpenWeatherMap namen
 const cities = {
-  "Paris": "Paris",
-  "Tokyo": "Tokyo",
-  "Rio de Janeiro": "Rio de Janeiro",
-  "Honolulu": "Honolulu",
-  "Cairo": "Cairo"
+  Paris: 'Paris',
+  Tokyo: 'Tokyo',
+  'Rio de Janeiro': 'Rio de Janeiro',
+  Honolulu: 'Honolulu',
+  Cairo: 'Cairo',
 };
 
 // Functie om het weer op te halen en in de slider te zetten
@@ -29,23 +29,20 @@ async function fetchWeather(city, element, iconElement) {
     const response = await fetch(url);
     const data = await response.json();
     const temp = data.main.temp;
-    const iconCode = data.weather[0].icon;  // Haal de icon code op (bijv. '01d' voor zonnig)
+    const iconCode = data.weather[0].icon; // Haal de icon code op (bijv. '01d' voor zonnig)
 
     // rond de temperatuur af naar een rond getal
     const roundedTemp = Math.round(temp);
 
     // Zet de afgeronde temperatuur in de HTML
     element.innerHTML = `${roundedTemp}°C`;
-    
-    
 
     // Stel de URL van het icoon in en voeg het toe aan de pagina
     const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
     iconElement.innerHTML = `<img src="${iconUrl}" alt="Weather icon" />`;
-    
   } catch (error) {
     console.error(`Fout bij ophalen van weer voor ${city}:`, error);
-    element.textContent = "Niet beschikbaar";
+    element.textContent = 'Niet beschikbaar';
   }
 }
 
@@ -53,8 +50,8 @@ async function fetchWeather(city, element, iconElement) {
 document.querySelectorAll('.swiper-slide').forEach((slide) => {
   const cityNameElement = slide.querySelector('.city-name');
   const tempElement = slide.querySelector('.temperature');
-  const iconElement = slide.querySelector('.weather-icon');  // Voeg een element toe voor het icoontje
-  
+  const iconElement = slide.querySelector('.weather-icon'); // Voeg een element toe voor het icoontje
+
   if (cityNameElement && tempElement && iconElement) {
     const city = cities[cityNameElement.textContent]; // Zoek de Engelse naam op
     if (city) {
