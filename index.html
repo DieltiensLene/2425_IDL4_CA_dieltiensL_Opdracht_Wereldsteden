@@ -4,57 +4,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swiper Example</title>
-
   </head>
   <body>
-  
-<!-- Slider main container -->
-<div class="swiper">
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+          <img src="images/1.jpg" />
+          <div class="city-name">Paris</div>
+          <div class="temperature">Loading...</div>
+          <div class="weather-icon"></div>
+        </div>
 
-  <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="images/2.jpg" />
+          <div class="city-name">Tokyo</div>
+          <div class="temperature">Loading...</div>
+          <div class="weather-icon"></div>
+          <!-- Voeg dit toe voor het icoontje -->
+        </div>
 
-    <!-- Slides -->
-    <div class="swiper-slide"><img src="images/1.jpg" />
-      <div class="city-name">Paris</div>
-      <div class="temperature">Loading...</div>
-      <div class="weather-icon"></div>
+        <div class="swiper-slide">
+          <img src="images/3.jpg" />
+          <div class="city-name">Rio de Janeiro</div>
+          <div class="temperature">Loading...</div>
+          <div class="weather-icon"></div>
+          <!-- Voeg dit toe voor het icoontje -->
+        </div>
+
+        <div class="swiper-slide">
+          <img src="images/4.jpg" />
+          <div class="city-name">Honolulu</div>
+          <div class="temperature">Loading...</div>
+          <div class="weather-icon"></div>
+          <!-- Voeg dit toe voor het icoontje -->
+        </div>
+
+        <div class="swiper-slide">
+          <img src="images/5.jpg" />
+          <div class="city-name">Cairo</div>
+          <div class="temperature">Loading...</div>
+          <div class="weather-icon"></div>
+          <!-- Voeg dit toe voor het icoontje -->
+        </div>
+      </div>
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
 
-    <div class="swiper-slide"><img src="images/2.jpg" />
-      <div class="city-name">Tokyo</div>
-      <div class="temperature">Loading...</div>
-      <div class="weather-icon"></div>  <!-- Voeg dit toe voor het icoontje -->
-    </div>
-
-    <div class="swiper-slide"><img src="images/3.jpg" />
-      <div class="city-name">Rio de Janeiro</div>
-      <div class="temperature">Loading...</div>
-      <div class="weather-icon"></div>  <!-- Voeg dit toe voor het icoontje -->
-    </div>
-
-    <div class="swiper-slide"><img src="images/4.jpg" />
-      <div class="city-name">Honolulu</div>
-      <div class="temperature">Loading...</div>
-      <div class="weather-icon"></div>  <!-- Voeg dit toe voor het icoontje -->
-    </div>
-
-    <div class="swiper-slide"><img src="images/5.jpg" />
-      <div class="city-name">Cairo</div>
-      <div class="temperature">Loading...</div>
-      <div class="weather-icon"></div>  <!-- Voeg dit toe voor het icoontje -->
-    </div>
-
-  </div>
-
-  <!-- If we need pagination -->
-  <div class="swiper-pagination"></div>
-
-  <!-- If we need navigation buttons -->
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-</div>
-
-<script type="module" src="src/main.js"></script>
+    <script type="module" src="src/main.js"></script>
   </body>
 </html>

@@ -23,7 +23,8 @@
   "dependencies": {
     "autoprefixer": "^10.4.21",
     "postcss-preset-env": "^10.1.5",
-    "swiper": "^11.2.2"
+    "swiper": "^11.2.2",
+    "three": "^0.174.0"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
