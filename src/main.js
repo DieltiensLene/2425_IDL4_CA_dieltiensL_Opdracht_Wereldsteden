@@ -3,6 +3,7 @@ import './styles/style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import Swiper from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -253,7 +254,8 @@ function initializeCities() {
 }
 
 function initializeSwiper() {
-  const citySwiper = new Swiper('.swiper-container', {
+  new Swiper('.swiper', {
+    modules: [Navigation, Pagination],
     direction: 'horizontal',
     loop: true,
     navigation: {
@@ -290,7 +292,6 @@ function initializeSwiper() {
   });
 
   console.log('Swiper initialized successfully');
-  return citySwiper;
 }
 
 camera.position.z = 5;
