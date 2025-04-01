@@ -7,8 +7,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { apiKey } from './secret.js';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
 // 🌍 Steden met coördinaten en namen - ADJUSTED COORDINATES to match wereldkaart.png
 const cities = {
@@ -56,13 +54,8 @@ scene.add(earthMesh);
 
 // Modified mapping function - fix texture alignment issues
 function latLonToVector3(lat, lon, radius) {
-  // Convert latitude and longitude from degrees to radians
   const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lon + 180) * (Math.PI / 180);
-
-  // Standard equation for converting lat/lon to 3D coordinates
-  // Note: The negative on the x coordinate ensures that the Greenwich meridian (0° longitude)
-  // aligns correctly with the texture map
+  const theta = lon * (Math.PI / 180);
   return new THREE.Vector3(
     -(radius * Math.sin(phi) * Math.cos(theta)),
     radius * Math.cos(phi),
@@ -344,103 +337,6 @@ function updateLabelPositions() {
   });
 }
 
-// Allow manual adjustment of city positions by providing UI controls
-function addCityAdjustmentControls() {
-  const controlPanel = document.createElement('div');
-  controlPanel.style.position = 'absolute';
-  controlPanel.style.top = '10px';
-  controlPanel.style.right = '10px';
-  controlPanel.style.backgroundColor = 'rgba(0,0,0,0.7)';
-  controlPanel.style.color = 'white';
-  controlPanel.style.padding = '10px';
-  controlPanel.style.borderRadius = '5px';
-  controlPanel.style.display = 'none'; // Hidden by default
-
-  const toggleButton = document.createElement('button');
-  toggleButton.textContent = 'Show City Adjustment Controls';
-  toggleButton.style.position = 'absolute';
-  toggleButton.style.top = '10px';
-  toggleButton.style.right = '10px';
-  toggleButton.style.zIndex = '1000';
-
-  toggleButton.addEventListener('click', () => {
-    if (controlPanel.style.display === 'none') {
-      controlPanel.style.display = 'block';
-      toggleButton.textContent = 'Hide Controls';
-    } else {
-      controlPanel.style.display = 'none';
-      toggleButton.textContent = 'Show City Adjustment Controls';
-    }
-  });
-
-  document.body.appendChild(toggleButton);
-  document.body.appendChild(controlPanel);
-
-  Object.keys(cities).forEach((cityName) => {
-    const cityControl = document.createElement('div');
-    cityControl.style.marginBottom = '15px';
-
-    const cityLabel = document.createElement('h3');
-    cityLabel.textContent = cityName;
-    cityControl.appendChild(cityLabel);
-
-    // Add adjustment sliders for longitude
-    const lonLabel = document.createElement('label');
-    lonLabel.textContent = 'Longitude: ';
-    const lonSlider = document.createElement('input');
-    lonSlider.type = 'range';
-    lonSlider.min = '-180';
-    lonSlider.max = '180';
-    lonSlider.step = '0.1';
-    lonSlider.value = cities[cityName].lon;
-
-    // Add adjustment sliders for latitude
-    const latLabel = document.createElement('label');
-    latLabel.textContent = 'Latitude: ';
-    const latSlider = document.createElement('input');
-    latSlider.type = 'range';
-    latSlider.min = '-90';
-    latSlider.max = '90';
-    latSlider.step = '0.1';
-    latSlider.value = cities[cityName].lat;
-
-    // Value display
-    const valueDisplay = document.createElement('div');
-    valueDisplay.textContent = `Lat: ${cities[cityName].lat}, Lon: ${cities[cityName].lon}`;
-
-    // Update when sliders change
-    const updateCity = () => {
-      cities[cityName].lat = parseFloat(latSlider.value);
-      cities[cityName].lon = parseFloat(lonSlider.value);
-      valueDisplay.textContent = `Lat: ${cities[cityName].lat}, Lon: ${cities[cityName].lon}`;
-
-      // Reinitialize to apply changes
-      initializeCities();
-    };
-
-    lonSlider.addEventListener('input', updateCity);
-    latSlider.addEventListener('input', updateCity);
-
-    cityControl.appendChild(latLabel);
-    cityControl.appendChild(latSlider);
-    cityControl.appendChild(document.createElement('br'));
-    cityControl.appendChild(lonLabel);
-    cityControl.appendChild(lonSlider);
-    cityControl.appendChild(document.createElement('br'));
-    cityControl.appendChild(valueDisplay);
-
-    controlPanel.appendChild(cityControl);
-  });
-
-  // Add a button to log current city coordinates for saving
-  const logButton = document.createElement('button');
-  logButton.textContent = 'Log City Coordinates';
-  logButton.addEventListener('click', () => {
-    console.log(JSON.stringify(cities, null, 2));
-  });
-  controlPanel.appendChild(logButton);
-}
-
 // Call this to enable adjustment UI (useful for development)
 // Uncomment this line if you want to have controls for fine-tuning city positions
 // addCityAdjustmentControls();
@@ -466,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Initialize Swiper
-  const swiper = initializeSwiper();
+  initializeSwiper();
 
   // Start animation loop
   animate();
