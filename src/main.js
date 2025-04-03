@@ -197,10 +197,13 @@ function initializeCities() {
     // Position on globe
     const globePosition = latLonToVector3(lat, lon, 2.05);
 
+    // color background globe
+    scene.background = new THREE.Color(0x000000); // Zwart
+
     // Create pin (red circle)
     const cityGeometry = new THREE.SphereGeometry(0.08, 16, 16);
     const cityMaterial = new THREE.MeshBasicMaterial({
-      color: 0xff0000,
+      color: 0xffffff, // wit
       depthTest: false,
     });
     const cityMesh = new THREE.Mesh(cityGeometry, cityMaterial);
@@ -215,6 +218,35 @@ function initializeCities() {
       globePosition: globePosition.clone(),
     };
 
+    function createStars() {
+      const starGeometry = new THREE.BufferGeometry();
+      const starVertices = [];
+
+      for (let i = 0; i < 500; i++) {
+        // Aantal sterren
+        const x = (Math.random() - 0.5) * 100;
+        const y = (Math.random() - 0.5) * 100;
+        const z = (Math.random() - 0.5) * 100;
+        starVertices.push(x, y, z);
+      }
+
+      starGeometry.setAttribute(
+        'position',
+        new THREE.Float32BufferAttribute(starVertices, 3)
+      );
+
+      const starMaterial = new THREE.PointsMaterial({
+        color: 0xffffff, // Witte sterren
+        size: 0.2,
+        sizeAttenuation: true,
+      });
+
+      const starField = new THREE.Points(starGeometry, starMaterial);
+      scene.add(starField);
+    }
+
+    createStars();
+
     // Position label offset from the globe
     const direction = globePosition.clone().normalize();
     const labelPosition = globePosition
@@ -228,7 +260,7 @@ function initializeCities() {
     // Create line connecting pin and label
     const lineGeometry = new THREE.BufferGeometry();
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0xffff00,
+      color: 0xffffff, // wit
       depthTest: false,
     });
 
