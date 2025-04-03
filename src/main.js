@@ -465,9 +465,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeCities();
   }
 
-  // Initialize Swiper
-  const swiper = initializeSwiper();
-
   // Start animation loop
   animate();
 });
