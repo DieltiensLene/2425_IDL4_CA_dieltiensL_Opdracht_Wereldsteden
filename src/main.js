@@ -77,15 +77,15 @@ const cityConnections = [];
 const createLabelSprite = (text) => {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
-  canvas.width = 512;
-  canvas.height = 256;
+  canvas.width = 285;
+  canvas.height = 128;
 
   // Draw background
   context.fillStyle = 'rgba(0, 0, 0, 0.7)';
   context.fillRect(0, 0, canvas.width, canvas.height);
 
   // Draw text
-  context.font = 'bold 44px Arial';
+  context.font = 'bold 22px Arial';
   context.fillStyle = 'white';
   context.textAlign = 'center';
   context.textBaseline = 'middle';
